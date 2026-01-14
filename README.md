@@ -4,6 +4,8 @@ Bu Chrome eklentisi, Jira üzerindeki atanmamış görevleri otomatik olarak tak
 
 ## 🚀 Özellikler
 
+![Uygulama Ekranı](assets/app-screen.jpeg)
+
 ### Ana Özellikler
 - 🔄 Otomatik sayfa yenileme
 - 🔔 Masaüstü bildirimleri
