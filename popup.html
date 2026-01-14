@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      width: 200px;
+      padding: 10px;
+      font-family: Arial, sans-serif;
+    }
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 34px;
+    }
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: .4s;
+      border-radius: 34px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+    input:checked + .slider {
+      background-color: #2196F3;
+    }
+    input:checked + .slider:before {
+      transform: translateX(26px);
+    }
+    .status {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .refresh-section {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 1px solid #ccc;
+    }
+    .refresh-input {
+      width: 60px;
+      padding: 5px;
+      margin: 0 5px;
+    }
+    .refresh-status {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h3 style="margin-bottom:8px;">Jira Takip Durumu</h3>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+      <label class="switch">
+        <input type="checkbox" id="toggleSwitch">
+        <span class="slider"></span>
+      </label>
+      <div class="status" id="statusText"></div>
+    </div>
+    <div class="refresh-section">
+      <h4>Takip Edilecek Filter ID</h4>
+      <div style="display:flex;gap:8px;align-items:center;justify-content:center;">
+        <input type="number" id="filterId" class="refresh-input" value="17639" min="1">
+        <button id="saveFilterBtn" style="padding:6px 8px;border-radius:6px;border:0;background:#2196F3;color:#fff;cursor:pointer;">Kaydet</button>
+      </div>
+      <small style="color:#666;display:block;margin-top:6px;">Jira'daki takip edilecek filter ID'si. (örn: 17639)</small>
+      <hr />
+      <h4>Otomatik Yenileme</h4>
+      <div>
+        <input type="number" id="refreshInterval" class="refresh-input" value="30">
+        <span>saniye</span>
+      </div>
+      <label class="switch" style="margin-top: 10px;">
+        <input type="checkbox" id="refreshToggle">
+        <span class="slider"></span>
+      </label>
+      <div class="refresh-status" id="refreshStatus"></div>
+      <hr />
+      <h4>Bildirim Ayarları</h4>
+      <div style="display:flex;gap:8px;align-items:center;justify-content:center;">
+        <label style="font-size:12px;">Throttle (s)</label>
+        <input type="number" id="throttleSeconds" class="refresh-input" value="30" min="1" style="width:70px;">
+      </div>
+      <div style="margin-top:8px;display:flex;align-items:center;gap:8px;justify-content:center;">
+        <label style="font-size:12px;">Bir döngüde bir bildirim</label>
+        <label class="switch">
+          <input type="checkbox" id="onePerCycle">
+          <span class="slider"></span>
+        </label>
+      </div>
+      <hr />
+      <h4>Yoksayılan Maddeler</h4>
+      <div id="ignoredList" style="max-height:120px;overflow:auto;text-align:left;padding:6px;border-radius:6px;background:#f6f8fa;border:1px solid #e1e4e8;">
+        <small style="color:#666;">Yok</small>
+      </div>
+      <div style="margin-top:8px;text-align:center;">
+        <button id="clearIgnored" style="padding:6px 8px;border-radius:6px;border:0;background:#e53935;color:#fff;cursor:pointer;">Tümünü Temizle</button>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 

@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Jira Görev Takipçisi",
+  "version": "1.0",
+  "description": "DayTaskCount filtresindeki değişiklikleri izler ve bildirim gönderir",
+  "permissions": [
+    "notifications",
+    "storage",
+    "tabs",
+    "webRequest",
+    "alarms",
+    "background"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "host_permissions": [
+    "*://jira.com.tr/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://jira.com.tr/secure/Dashboard.jspa*"],
+      "js": ["content.js"]
+    }
+  ],
+  "icons": {
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+} 
